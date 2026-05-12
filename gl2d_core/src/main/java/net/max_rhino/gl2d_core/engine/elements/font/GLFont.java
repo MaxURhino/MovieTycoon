@@ -79,6 +79,10 @@ public class GLFont implements Disposable {
         }
     }
 
+    public int getLineHeight() {
+        return size;
+    }
+
     private void loadGlyphs() {
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

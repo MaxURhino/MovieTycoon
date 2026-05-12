@@ -19,6 +19,9 @@ public abstract class Application implements Runnable {
     protected String title;
     protected long window;
 
+    private long lastTime;
+    private double deltaTime;
+
     private WindowResizeType resizeType;
 
     private List<DrawableDisposable> drawables = new ArrayList<>();
@@ -154,7 +157,11 @@ public abstract class Application implements Runnable {
         while (!glfwWindowShouldClose(this.window)) {
             glfwPollEvents();
 
-            this.render();
+            long currentTime = System.nanoTime();
+            deltaTime = (currentTime - lastTime) / 1_000_000_000f;
+            lastTime = currentTime;
+
+            this.render(deltaTime);
 
             glfwSwapBuffers(this.window);
         }
@@ -184,9 +191,9 @@ public abstract class Application implements Runnable {
 
     protected abstract void onCreate();
 
-    protected void render() {
+    protected void render(double dt) {
         for (DrawableDisposable drawable : drawables) {
-            drawable.render(0);
+            drawable.render(dt);
         }
     }
 }

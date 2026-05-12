@@ -1,5 +1,6 @@
 package net.max_rhino.movietycoon.game.elements;
 
+import net.max_rhino.gl2d_core.engine.elements.font.TextRenderer;
 import net.max_rhino.gl2d_core.engine.factories.TextureFactory;
 import net.max_rhino.movietycoon.Main;
 import net.max_rhino.movietycoon.PathsUtil;
@@ -8,6 +9,7 @@ import net.max_rhino.gl2d_core.engine.elements.sprite.NinePatchRectSprite;
 import net.max_rhino.gl2d_core.engine.elements.sprite.ScrollingSprite;
 import net.max_rhino.gl2d_core.engine.elements.sprite.Sprite;
 import net.max_rhino.gl2d_core.engine.math.Rect2i;
+import net.max_rhino.movietycoon.game.MainApp;
 import org.lwjgl.opengl.GL11;
 
 public class UI implements DrawableDisposable {
@@ -39,13 +41,9 @@ public class UI implements DrawableDisposable {
         this.scrolling_thing_sprite.setAntiAlias(true);
         this.shop_grid_sprite.setAntiAlias(true);
 
-        this.scrolling_thing.setyDelay(2);
-        this.scrolling_thing.setyCopies(7);
+        this.scrolling_thing.setyDelay(2).setyCopies(7);
 
-        this.shop_grid.setxDelay(5);
-        this.shop_grid.setxCopies(12);
-        this.shop_grid.setyDelay(5);
-        this.shop_grid.setyCopies(12);
+        this.shop_grid.setxDelay(5).setxCopies(12).setyDelay(5).setyCopies(12);
     }
 
     @Override
@@ -68,11 +66,15 @@ public class UI implements DrawableDisposable {
         this.shop_grid.render(dt);
         GL11.glPopMatrix();
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
-        this.scrolling_thing.setFrame(frame);
-        this.scrolling_thing.render(dt);
+        this.scrolling_thing.setFrame(frame).render(dt);
         GL11.glColor3f(1.0f, 0.0f, 0.0f);
         this.rounded_square.render(dt);
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
+        TextRenderer.drawText(
+                MainApp.RUBIK_BOLD,
+                "Upgrades",
+                0, 0
+        );
         return this;
     }
 }
