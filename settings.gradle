@@ -1,0 +1,2 @@
+rootProject.name = 'MovieTycoon'
+include 'gl2d_core', 'movie_tycoon', 'gl2d_opengl'

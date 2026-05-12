@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+group = 'net.max_rhino.gl2d_opengl'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    implementation project(":gl2d_core")
+}
